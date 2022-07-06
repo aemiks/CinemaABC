@@ -1,0 +1,128 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
+
+<body>
+
+  <div class="movie-container">
+    <span><a href="{% url 'seats:movie-list' %}" style="color: white; margin-top: 20px;"><i class="fa-solid fa-left-long"></i> Back to home page</a><span></span>
+    <h3>{{date}}</h3>
+    </span>
+  </div>
+
+  <ul class="showcase">
+    <li>
+      <div class="seat"></div>
+      <small>Available</small>
+    </li>
+    <li>
+      <div class="seat selected"></div>
+      <small>Selected</small>
+    </li>
+    <li>
+      <div class="seat sold"></div>
+      <small>Sold</small>
+    </li>
+  </ul>
+  <div class="container">
+    <div class="screen"></div>
+
+<form>
+    <div class="row">
+      <div class="seat-row">1</div>
+      <div class="seat-row">2</div>
+      <div class="seat-row">3</div>
+      <div class="seat-row">4</div>
+      <div class="seat-row">5</div>
+      <div class="seat-row">6</div>
+      <div class="seat-row">7</div>
+      <div class="seat-row">8</div>
+    </div>
+
+    <div class="row">
+      <span>A</span>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+
+    <div class="row">
+      <span>B</span>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat sold"></div>
+      <div class="seat sold"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+
+    <div class="row">
+      <span>C</span>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat sold"></div>
+      <div class="seat sold"></div>
+    </div>
+
+    <div class="row">
+      <span>D</span>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+
+    <div class="row">
+      <span>E</span>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+
+    <div class="row">
+      <span>F</span>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+  </div>
+
+
+  <p class="text">
+    You have selected <span id="count">0</span> seats.
+  </p>
+  <button type="submit" class="btn">Order selected seats</button>
+
+</form>
+
+<script src="{% static 'scripts.js' %}"></script>
+</body>
