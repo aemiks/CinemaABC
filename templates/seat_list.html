@@ -9,8 +9,9 @@
 <body>
 
   <div class="movie-container">
-    <span><a href="{% url 'seats:movie-list' %}" style="color: white; margin-top: 20px;"><i class="fa-solid fa-left-long"></i> Back to home page</a><span></span>
+    <span><a href="{% url 'seats:movie-list' %}" style="color: white;"><i class="fa-solid fa-left-long"></i> Back to home page</a><span></span>
     <h3>{{date}}</h3>
+      <h5>Cinema Hall number: {{ date.cinema_hall }}</h5>
     </span>
   </div>
 
@@ -31,98 +32,29 @@
   <div class="container">
     <div class="screen"></div>
 
-<form>
-    <div class="row">
-      <div class="seat-row">1</div>
-      <div class="seat-row">2</div>
-      <div class="seat-row">3</div>
-      <div class="seat-row">4</div>
-      <div class="seat-row">5</div>
-      <div class="seat-row">6</div>
-      <div class="seat-row">7</div>
-      <div class="seat-row">8</div>
-    </div>
-
-    <div class="row">
-      <span>A</span>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
-
-    <div class="row">
-      <span>B</span>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat sold"></div>
-      <div class="seat sold"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
-
-    <div class="row">
-      <span>C</span>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat sold"></div>
-      <div class="seat sold"></div>
-    </div>
-
-    <div class="row">
-      <span>D</span>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
-
-    <div class="row">
-      <span>E</span>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
-
-    <div class="row">
-      <span>F</span>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
+      <div class="container">
+        <div class="row">
+          Seat:
+        {% for seat in seats_length %}
+              <div class="seat-row"> {{seat}}</div>
+        {% endfor %}
+        </div>
+          {% for row in rows %}
+          <div class="row">
+            <span> Row {{ row }}</span>
+            {% for seat in seats_length %}
+              <div class="seat" name="seat" id="{{row}}{{seat}}" ></div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
   </div>
 
-
-  <p class="text">
+  <div class="container">
     You have selected <span id="count">0</span> seats.
-  </p>
+  </div>
   <button type="submit" class="btn">Order selected seats</button>
 
-</form>
 
 <script src="{% static 'scripts.js' %}"></script>
 </body>
