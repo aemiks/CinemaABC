@@ -43,7 +43,7 @@ class ScreeningDate(models.Model):
     movie = models.ForeignKey(
         Movie, on_delete=models.CASCADE, related_name="dates")
     cinema_hall = models.ForeignKey(
-        CinemaHall, on_delete=models.CASCADE, related_name="dates", blank=True, null=True)
+        CinemaHall, on_delete=models.CASCADE, related_name="dates")
     screening_day = models.DateField()
     screening_hour = models.CharField(max_length=5)
 
@@ -62,9 +62,9 @@ class ScreeningDate(models.Model):
 
 class Seat(models.Model):
     cinema_hall = models.ForeignKey(
-        CinemaHall, on_delete=models.CASCADE, related_name="seats", blank=True, null=True)
+        CinemaHall, on_delete=models.CASCADE, related_name="seats")
     screening_date = models.ForeignKey(
-        ScreeningDate, on_delete=models.CASCADE, related_name="seats", blank=True, null=True)
+        ScreeningDate, on_delete=models.CASCADE, related_name="seats")
     seat_number = models.PositiveSmallIntegerField(default=0)
     seat_sold = models.BooleanField(default=False)
 
