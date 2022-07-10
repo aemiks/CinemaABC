@@ -1,0 +1,12 @@
+<body>
+
+<body>
+  <div class="container">
+        <a href="{% url 'seats:seat-select' screening_date.id %}" class="text-light"><i class="fa-solid fa-left-long"></i> Back to cinema hall view</a>
+        <h2 class="screening_date text-light" id="{{screening_date.id}}">Order successful ! </h2>
+
+        <h4 style="margin: 3px;">Order successful on show: {{screening_date}}</h4>
+        <h4>Your show will be on cinema hall number: {{screening_date.cinema_hall}} </h4>
+        <h3>Your seat numbers: {% for seat in seat_list %}{{seat}} , {% endfor %}</h3>
+  </div>
+</body>

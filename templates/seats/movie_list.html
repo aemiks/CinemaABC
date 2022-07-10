@@ -63,9 +63,6 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light text-white">Welcome to Cinema ABC</h1>
         <p class="lead text-muted">Choose a movie from our repertoire, book a seat and enjoy super fun for the whole family</p>
-        <p>
-          <a href="#" class="btn btn-light my-2">Today's repertoire</a>
-        </p>
       </div>
     </div>
   </section>
@@ -73,15 +70,20 @@
   <div class="album">
     <div class="container">
       <div class="filterSection mb-3 text-light">
-        <label for="playDate">Choose date</label>
 
-        <input id="playDate" class="form-control" type="date" onfocus="this.showPicker()"/>
-        <label for="playName">Choose movie</label>
-        <input id="playName" class="form-control" type="radio" />
+        <label for="movieFilter">Filter by movie</label>
+        <select name="movieFilter" id="movieFilter" class="form-control">
+          <option value="" disabled selected>Select movie</option>
+          {% for movie in object_list %}
+          <option name="movieFilterOption" value="{{ movie }}">{{ movie }}</option>
+          {% endfor %}
+        </select>
+        <a href="/" class="text-light">Clear filters</a>
       </div>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for movie in object_list %}
+
+            {% for movie in filter.qs %}
             <div class="col">
               <div class="card shadow-sm text-center">
                 <h2>{{movie}}</h2>
@@ -90,17 +92,44 @@
                 <div class="card-body">
                   <p class="card-text">{{ movie.description }}</p>
                   <small class="text-muted">Duration: {{ movie.duration }} mins</small>
+                  <p></p>
+                  {% if movie.dates.all.count >= 1 %}
+                    {% for date in movie.dates.all|slice:":1" %}
+                        <p>Upcoming screening:</p>
+                        <p><a name="screening_hour" style="color: green;"  href="{% url 'seats:seat-select' date.id %}">{{ date.screening_day }} - {{ date.screening_hour }}</a></p>
 
+                        <!-- Button trigger modal -->
+                        <div class="btn-group">
+                          <button type="button" data-bs-toggle="modal" data-bs-target="#screening_{{ date.id }}" class="btn btn-sm btn-outline-secondary">Show more screening dates</button>
+                        </div>
 
-                  {% for date in movie.dates.all|slice:":1" %}
-                  <p><a name="screening_hour" style="color: green;"  href="{% url 'seats:seats_choose' date.id %}">{{ date.screening_day }} - {{ date.screening_hour }}</a></p>
-                  {% endfor %}
+                        <!-- Modal -->
+                        <div class="modal fade" id="screening_{{ date.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ movie }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                {% for date in movie.dates.all %}
+                                  <p><a name="screening_hour" style="color: green;"  href="{% url 'seats:seat-select' date.id %}">{{ date.screening_day }} - {{ date.screening_hour }}</a></p>
+                                {% endfor %}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    {% endfor %}
+                  {% else %}
                   <div class="d-flex justify-content-center align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Show more screening dates</button>
+                        <div class="btn-sm btn-outline-secondary">There is no screening now!</div>
                     </div>
-
                   </div>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -120,4 +149,25 @@
 </footer>
 
 </body>
+
+<script>
+let movieFilter = document.getElementById('movieFilter')
+
+movieFilter.addEventListener('change',(e)=>{
+  let movieFilterVal = e.target.value
+  let params = new window.URLSearchParams(window.location.search);
+  params.set('title', movieFilterVal);
+  let paramsURL = params.toString();
+  let urlToChange = "?" + paramsURL;
+  window.history.pushState({}, document.title, urlToChange );
+  location.reload()
+})
+
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+</script>
 </html>

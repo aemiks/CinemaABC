@@ -5,32 +5,34 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 
-
 <body>
 
   <div class="movie-container">
     <span><a href="{% url 'seats:movie-list' %}" style="color: white;"><i class="fa-solid fa-left-long"></i> Back to home page</a><span></span>
-    <h3>{{date}}</h3>
+    <div class="screening_date" id="{{date.id}}">
+      <h3>{{date}}</h3>
+    </div>
       <h5>Cinema Hall number: {{ date.cinema_hall }}</h5>
     </span>
   </div>
 
   <ul class="showcase">
     <li>
-      <div class="seat"></div>
+      <div class="show-seat"></div>
       <small>Available</small>
     </li>
     <li>
-      <div class="seat selected"></div>
+      <div class="show-seat selected"></div>
       <small>Selected</small>
     </li>
     <li>
-      <div class="seat sold"></div>
+      <div class="show-seat sold"></div>
       <small>Sold</small>
     </li>
   </ul>
   <div class="container">
     <div class="screen"></div>
+
 
       <div class="container">
         <div class="row">
@@ -41,20 +43,38 @@
         </div>
           {% for row in rows %}
           <div class="row">
-            <span> Row {{ row }}</span>
+            <span> R. {{ row }}  </span>
             {% for seat in seats_length %}
               <div class="seat" name="seat" id="{{row}}{{seat}}" ></div>
             {% endfor %}
           </div>
           {% endfor %}
+
         </div>
   </div>
+
 
   <div class="container">
     You have selected <span id="count">0</span> seats.
   </div>
-  <button type="submit" class="btn">Order selected seats</button>
+  <button type="submit" id="summary-btn" class="summary-btn" >Order selected seats</button>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{% static 'scripts.js' %}"></script>
+<script src="{% static 'backend.js' %}"></script>
+
+<script>
+
+var soldSeats = {{ sold_seats|safe }}
+var allSeats = document.getElementsByClassName("seat");
+
+for (let seat of allSeats) {
+    if (soldSeats.includes(seat.id)){
+      seat.classList.add('sold')
+  }
+}
+
+</script>
+
 </body>

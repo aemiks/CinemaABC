@@ -47,11 +47,24 @@ body {
   background-color: green;
   height: 26px;
   width: 32px;
-  margin: 3px;
+  margin: 4px;
+  margin-left: 7px;
   font-size: 50px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
+.show-seat {
+  background-color: green;
+  height: 26px;
+  width: 32px;
+  margin: 4px;
+  margin-left: 7px;
+  font-size: 50px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
 
 .seat-row {
   height: 26px;
@@ -68,6 +81,13 @@ body {
   margin-left: 18px;
 }
 
+.show-seat.selected {
+  background-color: #fff;
+}
+
+.show-seat.sold {
+  background-color: #ff0000;
+}
 
 .seat.selected {
   background-color: #fff;

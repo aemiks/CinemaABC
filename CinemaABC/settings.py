@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'seats',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

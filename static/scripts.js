@@ -13,7 +13,6 @@ function updateSelectedCount() {
 
   count.innerText = selectedSeatsCount;
 
-  setSeatsData(seatsSelect.selectedIndex);
 }
 
 container.addEventListener("click", (e) => {
@@ -28,3 +27,6 @@ container.addEventListener("click", (e) => {
 });
 
 updateSelectedCount();
+
+
+

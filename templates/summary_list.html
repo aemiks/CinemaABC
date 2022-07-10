@@ -31,7 +31,7 @@ body {
 <body>
   <div class="container">
         <a href="" class="text-light"><i class="fa-solid fa-left-long"></i> Back to seats</a>
-        <h2 class="text-light">Order Summary</h2>
+        <h2 class="screening_date text-light" id="{{screening_date.id}}">Order Summary - {{screening_date}}</h2>
         <table class="table">
           <thead>
             <tr class="text-light">
@@ -44,6 +44,34 @@ body {
 
             </tr>
           </thead>
-      </div>
+          <tbody>
+          {% if seat_list %}
+              {% for seat in seat_list %}
+                <tr class="text-light">
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ screening_date.movie }}</td>
+                    <td>{{ screening_date.screening_day }}</td>
+                    <td>{{ screening_date.screening_hour }}</td>
+                    <td><div class="selected-seat" id="{{seat}}">{{ seat }}</div></td>
+                    <td>0$</td>
+                </tr>
+              {% endfor %}
+            {% else %}
+            <tr>
+              <td  class="text-light" colspan="5">Your cart is empty</td>
+            </tr>
+            {% endif %}
+
+          </tbody>
+        </table>
+                <input type="text" name="seats" id="seats" hidden>
+
+              <td colspan="5">
+                <a class='order-seats btn btn-warning float-right ml-2' type="submit">Make reservation</a>
+
+              </td>
+                <a class='btn btn-primary float-right' href="/">Check another movie</a>
+
+  </div>
 
 </body>
