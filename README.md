@@ -4,6 +4,8 @@
 
 A simple application that allows you to book cinema seating for a particular screening. The application has ample room for expansion and the addition of new functionality.
 
+Online version available: [https://cinema-abc.herokuapp.com/](https://cinema-abc.herokuapp.com/) (media files not supported)
+
 ## II. Used technologies
 * Django 4.0.1
 * Python 3.9.10
