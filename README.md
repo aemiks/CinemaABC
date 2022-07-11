@@ -15,8 +15,8 @@ A simple application that allows you to book cinema seating for a particular scr
 
 * Python Virtual Environment.
   - Clone respiratory from github:
-    + `git clone https://github.com/aemiks/CinemaABC.git
-    + `cd CinemaABC
+    + `git clone https://github.com/aemiks/CinemaABC.git`
+    + `cd CinemaABC`
 Check out the [for more information](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
   - Create a virtual environment:
     + `python -m venv venv` for Windows;
