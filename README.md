@@ -2,7 +2,7 @@
 
 ## I. General info
 
-A simple application that allows you to book theater seating for a particular screening. The application has ample room for expansion and the addition of new functionality.
+A simple application that allows you to book cinema seating for a particular screening. The application has ample room for expansion and the addition of new functionality.
 
 ## II. Used technologies
 * Django 4.0.1
@@ -14,6 +14,9 @@ A simple application that allows you to book theater seating for a particular sc
 ## III. Installation
 
 * Python Virtual Environment.
+  - Clone respiratory from github:
+    + `git clone https://github.com/aemiks/CinemaABC.git
+    + `cd CinemaABC
 Check out the [for more information](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
   - Create a virtual environment:
     + `python -m venv venv` for Windows;
